@@ -3,7 +3,7 @@
 
 
 
-def main():
+def main() -> None:
 
     print(5+5)
 
