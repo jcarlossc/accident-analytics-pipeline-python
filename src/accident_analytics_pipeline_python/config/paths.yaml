@@ -1,0 +1,6 @@
+data:
+  raw: "data/raw/acidentes_recife_2019.csv"
+  processed: "data/processed/acidentes_tratado.csv"
+
+logs:
+  file: "logs/app.log"
