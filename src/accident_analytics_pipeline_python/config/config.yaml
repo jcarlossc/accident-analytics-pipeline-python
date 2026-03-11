@@ -1,0 +1,5 @@
+environment: "development"
+
+pipeline:
+  fail_on_error: true
+  save_intermediate: true
