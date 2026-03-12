@@ -2,7 +2,7 @@ import yaml
 from pathlib import Path
 from typing import Dict, Any
 
-def load_all_config(config_path: Path) -> Dict[str, Any]:
+def load_all_configs(config_path: Path) -> Dict[str, Any]:
     configs: Dict[str, Any] = {}
 
     if not config_path.exists():
