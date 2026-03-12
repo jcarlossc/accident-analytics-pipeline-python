@@ -1,9 +1,9 @@
 import logging
-import yaml
 from pathlib import Path
 from accident_analytics_pipeline_python.utils.logger.logger import setup_logger
 from accident_analytics_pipeline_python.utils.load_config.load_config import load_all_configs
 from accident_analytics_pipeline_python.ingestion.data_ingestion import ingest_data
+from accident_analytics_pipeline_python.standardization.data_standardization import standardization_data
 
 
 
@@ -29,6 +29,10 @@ def main() -> None:
         # 3️⃣ Coleta
         df = ingest_data(config["paths"]["data"]["raw"])
         print(df)
+        df = standardization_data(df)
+        print(df)
+
+        logger.info("Término do pipeline de acidentes.")
 
     except Exception as e:
         logger.critical("Erro crítico no pipeline.", exc_info=True)
