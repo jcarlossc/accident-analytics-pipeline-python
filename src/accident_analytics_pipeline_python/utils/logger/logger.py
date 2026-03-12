@@ -8,7 +8,7 @@ def setup_logger(logging_config: Dict[str, Any], log_file: str) -> None:
         level = level,
         format = logging_config["logging"]["format"],
         handlers = [
-            logging.FileHandler(log_file),
+            logging.FileHandler(log_file, encoding = "utf-8"),
             logging.StreamHandler()
         ]
     ) 
