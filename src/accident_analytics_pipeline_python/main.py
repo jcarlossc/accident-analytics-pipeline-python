@@ -4,6 +4,7 @@ from accident_analytics_pipeline_python.utils.logger.logger import setup_logger
 from accident_analytics_pipeline_python.utils.load_config.load_config import load_all_configs
 from accident_analytics_pipeline_python.ingestion.data_ingestion import ingest_data
 from accident_analytics_pipeline_python.standardization.data_standardization import standardization_data
+from accident_analytics_pipeline_python.cleaning.data_clean import clean_data
 
 
 
@@ -26,10 +27,13 @@ def main() -> None:
 
         logger.info("Iniciando pipeline de acidentes.")
 
-        # 3️⃣ Coleta
+        # Coleta
         df = ingest_data(config["paths"]["data"]["raw"])
         print(df)
         df = standardization_data(df)
+        print(df)
+
+        df = clean_data(df)
         print(df)
 
         logger.info("Término do pipeline de acidentes.")
