@@ -21,6 +21,9 @@ def ingest_data(path: str | Path) -> pd.DataFrame:
 
         if df.empty:
             raise ValueError("DataFrame vazio após leitura.")
+        
+        logger.info("Colunas processadas: %d", len(df.columns))
+        logger.info("Registros processados: %d", len(df))
 
         logger.info("Coleta concluída com sucesso.")
 

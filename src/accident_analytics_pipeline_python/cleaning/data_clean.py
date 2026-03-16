@@ -1,38 +1,21 @@
-"""
-Limpeza de dados de acidentes.
-"""
-
 import pandas as pd
 import logging
 
-
 logger = logging.getLogger(__name__)
-
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
     try:
         logger.info("Início da limpeza dos dados.")
 
-        # -----------------------------------
-        # Verificar se objeto é None
-        # (equivalente ao NULL no R)
-        # -----------------------------------
         if df is None:
             raise ValueError("Objeto None")
 
-        # -----------------------------------
-        # Verificar se é DataFrame
-        # -----------------------------------
         if not isinstance(df, pd.DataFrame):
             raise TypeError("Objeto não é um pandas DataFrame")
 
-        # -----------------------------------
-        # Verificar se DataFrame está vazio
-        # -----------------------------------
         if df.empty:
             raise ValueError("DataFrame vazio")
-
 
         columns = [
             "auto",
@@ -50,12 +33,11 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
         df[columns] = (
             df[columns]
-            .replace(["", " "], pd.NA)          # valores em branco -> NA
-            .apply(pd.to_numeric, errors="coerce")  # converter para número
-            .fillna(0)                          # NA -> 0
+            .replace(["", " "], pd.NA)         
+            .apply(pd.to_numeric, errors="coerce") 
+            .fillna(0)                          
         )
              
-
         categorical_columns = [
             "natureza_acidente",
             "situacao",
@@ -92,6 +74,9 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
             .replace(["", " ", "-", "NA", "null"], pd.NA)
             .fillna("Não informado")
         )
+
+        logger.info("Colunas processadas: %d", len(df.columns))
+        logger.info("Registros processados: %d", len(df))
 
         logger.info("Término da limpeza dos dados")
 
