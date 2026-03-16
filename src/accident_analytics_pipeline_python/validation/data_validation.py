@@ -10,14 +10,14 @@ def validation_data(df: pd.DataFrame) -> None:
         logger.info("Iniciando validação dos dados")
 
         if df["data"].map(lambda x: isinstance(x, date) or pd.isna(x)).all():
-            print("Coluna está no formato date")
+            logger.info("A coluna data está no formato date")
         else:
-            print("Existem valores inválidos")  
+            logger.info("Existem valores inválidos")
 
         if df["hora"].map(lambda x: isinstance(x, time) or pd.isna(x)).all():
-            print("Coluna está no formato time")
+            logger.info("A coluna hora está no formato time")
         else:
-            print("Existem valores inválidos") 
+            logger.info("Existem valores inválidos")
 
         numeric_columns = [
             "auto",
@@ -75,6 +75,12 @@ def validation_data(df: pd.DataFrame) -> None:
                     raise ValueError(
                         f"Coluna '{col}' contém valores NA."
                     )
+
+        invalid_dates = (~df["data"].map(lambda x: isinstance(x, date) or pd.isna(x))).sum()
+        logger.info("Valores inválidos na coluna data: %d", invalid_dates)          
+
+        logger.info("Colunas processadas: %d", len(df.columns))
+        logger.info("Registros processados: %d", len(df))         
 
         logger.info("Validação concluída com sucesso.")
 
