@@ -2,9 +2,9 @@ import logging
 import pandas as pd
 from pathlib import Path
 
+logger = logging.getLogger(__name__)
+
 def ingest_data(path: str | Path) -> pd.DataFrame:
-    
-    logger = logging.getLogger(__name__)
 
     path = Path(path)
 
