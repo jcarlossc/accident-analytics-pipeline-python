@@ -1,29 +1,22 @@
-"""
-Padronização de nomes de colunas.
-"""
-
 import pandas as pd
 import logging
-
 
 logger = logging.getLogger(__name__)
 
 def standardization_data(df: pd.DataFrame) -> pd.DataFrame:
+    
+    logger.info("Início da padronização.")
 
+    if df is None:
+        raise ValueError("Objeto None")
 
-    try:
-        logger.info("Início da padronização.")
- 
-        if df is None:
-            raise ValueError("Objeto None")
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Objeto não é um pandas DataFrame")
 
-        if not isinstance(df, pd.DataFrame):
-            raise TypeError("Objeto não é um pandas DataFrame")
-
-        if df.empty:
-            raise ValueError("DataFrame vazio")
-
-
+    if df.empty:
+        raise ValueError("DataFrame vazio")
+    
+    try:    
         df.columns = (
             df.columns
             .str.strip()
@@ -41,7 +34,6 @@ def standardization_data(df: pd.DataFrame) -> pd.DataFrame:
                 .dt.date
             )
 
-
         if "hora" in df.columns:
             df["hora"] = pd.to_datetime(
                 df["hora"],
@@ -56,7 +48,6 @@ def standardization_data(df: pd.DataFrame) -> pd.DataFrame:
             if col in df.columns:
                 df[col] = df[col].str.title()
 
-
         columns_to_capitalize = ["natureza_acidente", "situacao", "complemento",
             "referencia_cruzamento", "sentido_via",
             "tipo", "descricao"]
@@ -65,7 +56,6 @@ def standardization_data(df: pd.DataFrame) -> pd.DataFrame:
             if col in df.columns:
                 df[col] = df[col].str.strip().str.capitalize()        
     
-
         logger.info("Padronização concluída com sucesso.")
 
         return df
