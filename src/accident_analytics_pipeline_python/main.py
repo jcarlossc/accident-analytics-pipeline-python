@@ -6,6 +6,7 @@ from accident_analytics_pipeline_python.ingestion.data_ingestion import ingest_d
 from accident_analytics_pipeline_python.standardization.data_standardization import standardization_data
 from accident_analytics_pipeline_python.cleaning.data_clean import clean_data
 from accident_analytics_pipeline_python.validation.data_validation import validation_data
+from accident_analytics_pipeline_python.utils.helpers.helper import save_csv
 
 
 
@@ -38,7 +39,8 @@ def main() -> None:
         print(df)
 
         validation_data(df)
-        print()
+
+        save_csv(df, config["paths"]["data"]["processed"])
 
         logger.info("Término do pipeline de acidentes.")
 
