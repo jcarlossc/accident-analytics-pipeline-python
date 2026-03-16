@@ -25,5 +25,12 @@ build-backend = "poetry.core.masonry.api"
 [dependency-groups]
 dev = [
     "mypy (>=1.19.1,<2.0.0)",
-    "types-pyyaml (>=6.0.12.20250915,<7.0.0.0)"
+    "types-pyyaml (>=6.0.12.20250915,<7.0.0.0)",
+    "pandas-stubs (>=3.0.0.260204,<4.0.0.0)"
 ]
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = "src"
+explicit_package_bases = true
+ignore_missing_imports = true
