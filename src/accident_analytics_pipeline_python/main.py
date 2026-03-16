@@ -8,12 +8,7 @@ from accident_analytics_pipeline_python.cleaning.data_clean import clean_data
 from accident_analytics_pipeline_python.validation.data_validation import validation_data
 from accident_analytics_pipeline_python.utils.helpers.helper import save_csv
 
-
-
-
 def main() -> None:
-
-
     config_path = Path("config")
 
     config = load_all_configs(config_path)
@@ -24,19 +19,14 @@ def main() -> None:
     )
     logger = logging.getLogger(__name__)
 
-
     try:
-
         logger.info("Iniciando pipeline de acidentes.")
 
-        # Coleta
         df = ingest_data(config["paths"]["data"]["raw"])
-        print(df)
+
         df = standardization_data(df)
-        print(df)
 
         df = clean_data(df)
-        print(df)
 
         validation_data(df)
 
