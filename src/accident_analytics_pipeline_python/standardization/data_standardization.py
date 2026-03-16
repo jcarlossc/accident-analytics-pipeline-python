@@ -54,7 +54,10 @@ def standardization_data(df: pd.DataFrame) -> pd.DataFrame:
 
         for col in columns_to_capitalize:
             if col in df.columns:
-                df[col] = df[col].str.strip().str.capitalize()        
+                df[col] = df[col].str.strip().str.capitalize()  
+
+        logger.info("Colunas processadas: %d", len(df.columns))
+        logger.info("Registros processados: %d", len(df))              
     
         logger.info("Padronização concluída com sucesso.")
 
