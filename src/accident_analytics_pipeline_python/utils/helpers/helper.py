@@ -2,11 +2,9 @@ from pathlib import Path
 import pandas as pd
 import logging
 
+logger = logging.getLogger(__name__)
+
 def save_csv(df: pd.DataFrame, path: str | Path) -> None:
-
-    # Cria um logger específico para este módulo
-    logger = logging.getLogger(__name__)
-
     try:
         logger.info("Iniciando salvamento do arquivo CSV.")
 

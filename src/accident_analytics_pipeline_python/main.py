@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+
 from accident_analytics_pipeline_python.utils.loggers.logger import setup_logger
 from accident_analytics_pipeline_python.utils.load_config.load_config import load_all_configs
 from accident_analytics_pipeline_python.ingestion.data_ingestion import ingest_data
