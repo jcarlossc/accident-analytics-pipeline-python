@@ -85,4 +85,6 @@ def ingest_data(path: str | Path) -> pd.DataFrame:
         # O parâmetro exc_info=True inclui o stack trace completo,
         # facilitando a investigação de falhas.
         logger.error("Erro ao coletar de dados.", exc_info=True)
+
+        # Propaga a exceção para que a camada superior trate o erro.
         raise    
