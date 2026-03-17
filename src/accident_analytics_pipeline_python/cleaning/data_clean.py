@@ -133,7 +133,7 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         logger.info("Colunas processadas: %d", len(df.columns))
         logger.info("Registros processados: %d", len(df))
 
-        # Registra no log a quantidade de colunas e de registros.
+        # Registra no log de término do processo de limpeza.
         logger.info("Término da limpeza dos dados")
 
         # Retorna o DataFrame tratado para uso nas etapas seguintes do pipeline.
