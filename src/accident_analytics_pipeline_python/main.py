@@ -24,7 +24,7 @@ def main() -> None:
     6. Validação de integridade e qualidade
     7. Persistência do dataset processado
 
-    Obs: Na raiz do sistema, "poetry run acidentes", executa o pipeline. 
+    Obs: no CMD, na raiz do sistema, "poetry run acidentes", executa o pipeline. 
     """
 
     # Diretório contendo os arquivos de configuração

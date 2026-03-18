@@ -26,7 +26,8 @@ build-backend = "poetry.core.masonry.api"
 dev = [
     "mypy (>=1.19.1,<2.0.0)",
     "types-pyyaml (>=6.0.12.20250915,<7.0.0.0)",
-    "pandas-stubs (>=3.0.0.260204,<4.0.0.0)"
+    "pandas-stubs (>=3.0.0.260204,<4.0.0.0)",
+    "pytest (>=9.0.2,<10.0.0)"
 ]
 
 [tool.mypy]
