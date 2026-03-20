@@ -7,6 +7,7 @@ import logging
 # de acordo com a hierarquia dos módulos da aplicação.
 logger = logging.getLogger(__name__)
 
+
 def save_csv(df: pd.DataFrame, path: str | Path) -> None:
     """
     Persiste um DataFrame em um arquivo CSV no sistema de arquivos.
@@ -56,7 +57,7 @@ def save_csv(df: pd.DataFrame, path: str | Path) -> None:
     # falhas em etapas anteriores do pipeline.
     if df.empty:
         raise ValueError("DataFrame vazio. Nada para salvar.")
-    
+
     try:
         # Garante que o diretório de destino exista.
         # Caso o diretório não exista, ele será criado automaticamente.
@@ -68,11 +69,7 @@ def save_csv(df: pd.DataFrame, path: str | Path) -> None:
         # - index=False evita salvar o índice do pandas no arquivo
         # - encoding="utf-8" garante compatibilidade com sistemas
         #   que utilizam codificação UTF-8.
-        df.to_csv(
-            path,
-            index=False,
-            encoding="utf-8"
-        )
+        df.to_csv(path, index=False, encoding="utf-8")
 
         # Registro indicando que o arquivo foi salvo com sucesso.
         # O caminho do arquivo é incluído no log para facilitar

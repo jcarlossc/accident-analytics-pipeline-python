@@ -7,6 +7,7 @@ from datetime import date, time
 # de acordo com a hierarquia dos módulos da aplicação.
 logger = logging.getLogger(__name__)
 
+
 def validation_data(df: pd.DataFrame) -> None:
     """
     Realiza validações de integridade e consistência em um DataFrame.
@@ -56,7 +57,7 @@ def validation_data(df: pd.DataFrame) -> None:
             logger.info("A coluna hora está no formato time")
         else:
             logger.info("Existem valores inválidos na coluna hora")
-    
+
     try:
         # Lista de colunas que representam contagens de veículos
         # ou vítimas. Essas colunas devem obrigatoriamente possuir
@@ -72,7 +73,7 @@ def validation_data(df: pd.DataFrame) -> None:
             "viatura",
             "outros",
             "vitimas",
-            "vitimasfatais"
+            "vitimasfatais",
         ]
 
         # Verifica se cada coluna possui tipo numérico.
@@ -112,7 +113,7 @@ def validation_data(df: pd.DataFrame) -> None:
             "mao_direcao",
             "divisao_via1",
             "divisao_via2",
-            "divisao_via3"
+            "divisao_via3",
         ]
 
         # Verifica se as colunas textuais possuem valores ausentes.
@@ -121,13 +122,11 @@ def validation_data(df: pd.DataFrame) -> None:
         for col in text_columns:
             if col in df.columns:
                 if df[col].isna().any():
-                    raise ValueError(
-                        f"Coluna '{col}' contém valores NA."
-                    )
-        
+                    raise ValueError(f"Coluna '{col}' contém valores NA.")
+
         # Registra no log a quantidade de colunas e de registros.
         logger.info("Colunas processadas: %d", len(df.columns))
-        logger.info("Registros processados: %d", len(df))         
+        logger.info("Registros processados: %d", len(df))
 
         # Registra no log de término do processo de validação.
         logger.info("Validação concluída com sucesso.")

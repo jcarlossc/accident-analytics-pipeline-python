@@ -2,12 +2,19 @@ import logging
 from pathlib import Path
 
 from accident_analytics_pipeline_python.utils.loggers.logger import setup_logger
-from accident_analytics_pipeline_python.utils.load_config.load_config import load_all_configs
+from accident_analytics_pipeline_python.utils.load_config.load_config import (
+    load_all_configs,
+)
 from accident_analytics_pipeline_python.ingestion.data_ingestion import ingest_data
-from accident_analytics_pipeline_python.standardization.data_standardization import standardization_data
+from accident_analytics_pipeline_python.standardization.data_standardization import (
+    standardization_data,
+)
 from accident_analytics_pipeline_python.cleaning.data_clean import clean_data
-from accident_analytics_pipeline_python.validation.data_validation import validation_data
+from accident_analytics_pipeline_python.validation.data_validation import (
+    validation_data,
+)
 from accident_analytics_pipeline_python.utils.helpers.helper import save_csv
+
 
 def main() -> None:
     """
@@ -24,7 +31,7 @@ def main() -> None:
     6. Validação de integridade e qualidade
     7. Persistência do dataset processado
 
-    Obs: no CMD, na raiz do sistema, "poetry run acidentes", executa o pipeline. 
+    Obs: no CMD, na raiz do sistema, "poetry run acidentes", executa o pipeline.
     """
 
     # Diretório contendo os arquivos de configuração
@@ -34,10 +41,7 @@ def main() -> None:
     config = load_all_configs(config_path)
 
     # Configuração do sistema de logging da aplicação
-    setup_logger(
-        config["logging"],
-        config["paths"]["logs"]["file"]
-    )
+    setup_logger(config["logging"], config["paths"]["logs"]["file"])
 
     # Instância do logger para este módulo
     logger = logging.getLogger(__name__)
@@ -79,6 +83,7 @@ def main() -> None:
         # Caso configurado, interrompe a execução do pipeline
         if config["config"]["pipeline"]["fail_on_error"]:
             raise
+
 
 if __name__ == "__main__":
     main()

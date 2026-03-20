@@ -1,22 +1,29 @@
 from unittest.mock import patch
 import pandas as pd
 
+
 def test_main_pipeline():
-    with patch("accident_analytics_pipeline_python.main.ingest_data") as mock_ingest, \
-         patch("accident_analytics_pipeline_python.main.standardization_data") as mock_std, \
-         patch("accident_analytics_pipeline_python.main.clean_data") as mock_clean, \
-         patch("accident_analytics_pipeline_python.main.validation_data") as mock_val, \
-         patch("accident_analytics_pipeline_python.main.save_csv") as mock_save, \
-         patch("accident_analytics_pipeline_python.main.load_all_configs") as mock_config:
+    with (
+        patch("accident_analytics_pipeline_python.main.ingest_data") as mock_ingest,
+        patch(
+            "accident_analytics_pipeline_python.main.standardization_data"
+        ) as mock_std,
+        patch("accident_analytics_pipeline_python.main.clean_data") as mock_clean,
+        patch("accident_analytics_pipeline_python.main.validation_data") as mock_val,
+        patch("accident_analytics_pipeline_python.main.save_csv") as mock_save,
+        patch(
+            "accident_analytics_pipeline_python.main.load_all_configs"
+        ) as mock_config,
+    ):
 
         # Config fake
         mock_config.return_value = {
             "paths": {
                 "data": {"raw": "input.csv", "processed": "output.csv"},
-                "logs": {"file": "log.log"}
+                "logs": {"file": "log.log"},
             },
             "logging": {"logging": {"level": "INFO", "format": "%(message)s"}},
-            "config": {"pipeline": {"fail_on_error": True}}
+            "config": {"pipeline": {"fail_on_error": True}},
         }
 
         df = pd.DataFrame({"a": [1]})

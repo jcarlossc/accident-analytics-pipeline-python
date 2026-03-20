@@ -6,6 +6,7 @@ import logging
 # facilitando a configuração centralizada e o controle de níveis de log.
 logger = logging.getLogger(__name__)
 
+
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     """
     Realiza a limpeza e normalização dos dados de um DataFrame.
@@ -46,18 +47,18 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     # Validação 1: verifica se o objeto recebido é None.
     # Essa verificação evita erros de acesso a atributos do objeto.
     if df is None:
-            raise ValueError("Objeto None")
+        raise ValueError("Objeto None")
 
     # Validação 2: garante que o objeto recebido é um DataFrame.
     # Isso protege a função contra tipos de dados incorretos.
     if not isinstance(df, pd.DataFrame):
-            raise TypeError("Objeto não é um pandas DataFrame")
+        raise TypeError("Objeto não é um pandas DataFrame")
 
     # Validação 3: verifica se o DataFrame contém registros.
     # DataFrames vazios podem indicar falhas na ingestão ou extração.
     if df.empty:
-            raise ValueError("DataFrame vazio")
-    
+        raise ValueError("DataFrame vazio")
+
     try:
         # Lista de colunas que representam contagens de veículos ou vítimas.
         # Essas colunas devem ser tratadas como valores numéricos.
@@ -72,7 +73,7 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
             "viatura",
             "outros",
             "vitimas",
-            "vitimasfatais"
+            "vitimasfatais",
         ]
 
         # Limpeza e conversão das colunas numéricas.
@@ -89,9 +90,9 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
                 .apply(pd.to_numeric, errors="coerce")
                 .fillna(0)
             )
-             
+
         # Lista de colunas categóricas que representam atributos textuais
-        # do acidente, local ou condições da via.     
+        # do acidente, local ou condições da via.
         categorical_columns = [
             "natureza_acidente",
             "situacao",
@@ -120,7 +121,7 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
             "mao_direcao",
             "divisao_via1",
             "divisao_via2",
-            "divisao_via3"
+            "divisao_via3",
         ]
 
         # Tratamento das colunas categóricas.
@@ -154,6 +155,3 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
         # Propaga a exceção para que camadas superiores possam tratá-la.
         raise
-
-
- 

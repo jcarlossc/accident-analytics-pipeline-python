@@ -1,6 +1,7 @@
 import logging
 from typing import Dict, Any
 
+
 def setup_logger(logging_config: Dict[str, Any], log_file: str) -> None:
     """
     Configura o sistema de logging da aplicação.
@@ -47,21 +48,18 @@ def setup_logger(logging_config: Dict[str, Any], log_file: str) -> None:
     # com os parâmetros definidos.
     logging.basicConfig(
         # Define o nível mínimo de mensagens que serão registradas.
-        level = level,
-
+        level=level,
         # Define o formato das mensagens de log.
         # Normalmente inclui timestamp, nível do log, módulo e mensagem.
-        format = logging_config["logging"]["format"],
-
+        format=logging_config["logging"]["format"],
         # Define os handlers responsáveis por enviar os logs
         # para diferentes destinos.
-        handlers = [
+        handlers=[
             # FileHandler grava os logs em arquivo para posterior auditoria
             # e análise de execução do pipeline.
-            logging.FileHandler(log_file, encoding = "utf-8"),
-
+            logging.FileHandler(log_file, encoding="utf-8"),
             # StreamHandler envia os logs para o console (stdout),
             # permitindo acompanhar a execução em tempo real.
-            logging.StreamHandler()
-        ]
-    ) 
+            logging.StreamHandler(),
+        ],
+    )
