@@ -80,12 +80,15 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         # 1. Substituição de valores vazios por NA
         # 2. Conversão para tipo numérico
         # 3. Substituição de valores ausentes por zero
-        df[columns] = (
-            df[columns]
-            .replace(["", " "], pd.NA)         
-            .apply(pd.to_numeric, errors="coerce") 
-            .fillna(0)                          
-        )
+        existing_numeric_cols = [col for col in columns if col in df.columns]
+
+        if existing_numeric_cols:
+            df[existing_numeric_cols] = (
+                df[existing_numeric_cols]
+                .replace(["", " "], pd.NA)
+                .apply(pd.to_numeric, errors="coerce")
+                .fillna(0)
+            )
              
         # Lista de colunas categóricas que representam atributos textuais
         # do acidente, local ou condições da via.     
@@ -123,11 +126,16 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         # Tratamento das colunas categóricas.
         # Valores inconsistentes comuns em dados brutos são convertidos para NA,
         # e posteriormente substituídos por um valor padrão.
-        df[categorical_columns] = (
-            df[categorical_columns]
-            .replace(["", " ", "-", "NA", "null"], pd.NA)
-            .fillna("Não informado")
-        )
+        existing_categorical_cols = [
+            col for col in categorical_columns if col in df.columns
+        ]
+
+        if existing_categorical_cols:
+            df[existing_categorical_cols] = (
+                df[existing_categorical_cols]
+                .replace(["", " ", "-", "NA", "null"], pd.NA)
+                .fillna("Não informado")
+            )
 
         # Registra no log a quantidade de colunas e de registros.
         logger.info("Colunas processadas: %d", len(df.columns))
