@@ -72,6 +72,19 @@ accident-analytics-pipeline-python/
 └── README
 ```
 
+## 📌 Tecnologias Utilizadas
+| Tecnologia | Descrição |
+| ---------- | --------- |
+| Python 3.11+ | Linguagem de programação |
+| Poetry | Gerenciamento de dependências |
+| Pandas | Biblioteca para Análise de Dados |
+| PyYAML | Formato de serialização de dados |
+| Logging | Sistema de log nativo |
+| pytest | Teste unitários |
+| mypy | Biblioteca para tipagem estática |
+| Black | Biblioteca para formatação do código |
+
+---
 
 
 
