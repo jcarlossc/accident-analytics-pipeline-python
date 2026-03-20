@@ -1,7 +1,10 @@
 import pandas as pd
 import pytest
 
-from accident_analytics_pipeline_python.standardization.data_standardization import standardization_data
+from accident_analytics_pipeline_python.standardization.data_standardization import (
+    standardization_data,
+)
+
 
 def test_standardization_none():
     """Deve lançar erro quando df é None"""
@@ -26,12 +29,14 @@ def test_standardization_empty_dataframe():
 def test_standardization_success():
     """Testa padronização completa de dados"""
 
-    df = pd.DataFrame({
-        " Data ": ["2024-01-01"],
-        "Hora": ["12:30:00"],
-        "Bairro": ["boa viagem"],
-        "Natureza Acidente": ["colisão"]
-    })
+    df = pd.DataFrame(
+        {
+            " Data ": ["2024-01-01"],
+            "Hora": ["12:30:00"],
+            "Bairro": ["boa viagem"],
+            "Natureza Acidente": ["colisão"],
+        }
+    )
 
     result = standardization_data(df)
 
@@ -57,9 +62,7 @@ def test_standardization_success():
 def test_standardization_missing_columns():
     """Não deve falhar se colunas opcionais não existirem"""
 
-    df = pd.DataFrame({
-        "outra_coluna": ["valor"]
-    })
+    df = pd.DataFrame({"outra_coluna": ["valor"]})
 
     result = standardization_data(df)
 
@@ -70,10 +73,7 @@ def test_standardization_missing_columns():
 def test_standardization_invalid_date_and_time():
     """Valores inválidos devem virar NaT/NaN"""
 
-    df = pd.DataFrame({
-        "data": ["data_invalida"],
-        "hora": ["99:99:99"]
-    })
+    df = pd.DataFrame({"data": ["data_invalida"], "hora": ["99:99:99"]})
 
     result = standardization_data(df)
 
@@ -84,9 +84,7 @@ def test_standardization_invalid_date_and_time():
 def test_standardization_logs(caplog):
     """Verifica se logs são emitidos"""
 
-    df = pd.DataFrame({
-        "data": ["2024-01-01"]
-    })
+    df = pd.DataFrame({"data": ["2024-01-01"]})
 
     with caplog.at_level("INFO"):
         standardization_data(df)

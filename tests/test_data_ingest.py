@@ -4,6 +4,7 @@ from pathlib import Path
 
 from accident_analytics_pipeline_python.ingestion.data_ingestion import ingest_data
 
+
 def test_ingest_data_success(tmp_path: Path):
     """
     Testa coleta bem-sucedida de um CSV válido.
@@ -11,10 +12,7 @@ def test_ingest_data_success(tmp_path: Path):
 
     # Cria um CSV temporário
     file = tmp_path / "data.csv"
-    df_expected = pd.DataFrame({
-        "col1": [1, 2],
-        "col2": ["a", "b"]
-    })
+    df_expected = pd.DataFrame({"col1": [1, 2], "col2": ["a", "b"]})
     df_expected.to_csv(file, index=False)
 
     # Executa função
@@ -84,10 +82,7 @@ def test_ingest_data_logs(tmp_path: Path, caplog):
 
     file = tmp_path / "data.csv"
 
-    df_expected = pd.DataFrame({
-        "col1": [1],
-        "col2": ["a"]
-    })
+    df_expected = pd.DataFrame({"col1": [1], "col2": ["a"]})
     df_expected.to_csv(file, index=False)
 
     with caplog.at_level("INFO"):

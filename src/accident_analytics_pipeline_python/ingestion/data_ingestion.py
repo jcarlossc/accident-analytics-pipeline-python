@@ -7,6 +7,7 @@ from pathlib import Path
 # Isso permite configurar logs centralmente na aplicação.
 logger = logging.getLogger(__name__)
 
+
 def ingest_data(path: str | Path) -> pd.DataFrame:
     """
     Realiza a ingestão de dados a partir de um arquivo CSV.
@@ -87,4 +88,4 @@ def ingest_data(path: str | Path) -> pd.DataFrame:
         logger.error("Erro ao coletar de dados.", exc_info=True)
 
         # Propaga a exceção para que a camada superior trate o erro.
-        raise    
+        raise

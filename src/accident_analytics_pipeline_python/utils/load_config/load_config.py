@@ -2,6 +2,7 @@ import yaml
 from pathlib import Path
 from typing import Dict, Any
 
+
 def load_all_configs(config_path: Path) -> Dict[str, Any]:
     """
     Carrega todos os arquivos de configuração YAML presentes
@@ -46,7 +47,9 @@ def load_all_configs(config_path: Path) -> Dict[str, Any]:
     # Verifica se o diretório de configuração existe.
     # Caso contrário, interrompe a execução informando erro.
     if not config_path.exists():
-        raise FileNotFoundError(f"Diretório de configuração não encontrado: {config_path}")
+        raise FileNotFoundError(
+            f"Diretório de configuração não encontrado: {config_path}"
+        )
 
     # Percorre todos os arquivos com extensão .yaml dentro
     # do diretório informado.
@@ -64,4 +67,4 @@ def load_all_configs(config_path: Path) -> Dict[str, Any]:
             configs[file.stem] = yaml.safe_load(f)
 
     # Retorna o dicionário contendo todas as configurações carregadas.
-    return configs     
+    return configs
