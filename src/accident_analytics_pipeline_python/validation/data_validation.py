@@ -42,18 +42,20 @@ def validation_data(df: pd.DataFrame) -> None:
     # datetime.date ou valores ausentes (NaN/NaT).
     # Essa validação garante que a coluna foi corretamente convertida
     # durante a etapa de padronização.
-    if df["data"].map(lambda x: isinstance(x, date) or pd.isna(x)).all():
-        logger.info("A coluna data está no formato date")
-    else:
-        logger.info("Existem valores inválidos")
+    if "data" in df.columns:
+        if df["data"].map(lambda x: isinstance(x, date) or pd.isna(x)).all():
+            logger.info("A coluna data está no formato date")
+        else:
+            logger.info("Existem valores inválidos na coluna data")
 
     # Verifica se todos os valores da coluna "hora" são do tipo
     # datetime.time ou valores ausentes.
     # Isso garante consistência para análises temporais.
-    if df["hora"].map(lambda x: isinstance(x, time) or pd.isna(x)).all():
-        logger.info("A coluna hora está no formato time")
-    else:
-        logger.info("Existem valores inválidos")
+    if "hora" in df.columns:
+        if df["hora"].map(lambda x: isinstance(x, time) or pd.isna(x)).all():
+            logger.info("A coluna hora está no formato time")
+        else:
+            logger.info("Existem valores inválidos na coluna hora")
     
     try:
         # Lista de colunas que representam contagens de veículos
