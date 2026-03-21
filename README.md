@@ -21,7 +21,7 @@ Tudo isso com:
 * Configuração desacoplada via YAML
 * Arquitetura pronta para produção
 
-## 📌 Arquitetura do Projeto
+## 📌 Estrutura do Projeto
 ```
 accident-analytics-pipeline-python/
 |
@@ -137,7 +137,7 @@ config/logging.yaml
 config/paths.yaml
 ```
 
-## 📌 Documentação das Colunas (alguns exemplos)
+## 📌 Dicionário de dados (alguns exemplos)
 | Coluna |	Tipo | Descrição |
 |--------|------|-----------|
 | data |	Date | Data do acidente |
@@ -158,8 +158,7 @@ Durante a validação, o pipeline verifica métricas importantes de qualidade.
 | Completeness | Percentual de valores não nulos |
 | Consistency | Consistência entre colunas |
 | Validity	| Valores dentro do domínio permitido |
-| Timeliness | Datas válidas |
-| Timeliness | Horas válidas |
+| Timeliness | Datas e Horas válidas |
 
 Exemplo de validações:
 * datas válidas
@@ -190,6 +189,38 @@ logs/app.log
 
 ## 📌 Modo de Utilizar
 
+### Tecnologias necessárias:
+* Versão estável do Python
+* Poetry - gerenciador de dependências
+* Pytest - tstes unitários
+* Mypy - tipagem estática
+* Black - formatação do código
+
+### 1. Clonar e entrar no diretório do projeto:
+```
+git clone https://github.com/jcarlossc/accident-analytics-pipeline-python.git
+cd accident-analytics-pipeline-python
+```
+### 2. Instalar dependências:
+```
+poetry install
+```
+### 3. Executar projeto:
+```
+poetry run acidentes
+```
+### 4. Executar testes unitários:
+```
+poetry run pytest
+```
+### 5. Executar teste de tipagem estática:
+```
+poetry run mypy .
+```
+### 6. Executar formatação:
+```
+poetry run black .
+```
 
 ## 📌 Licença
 Este projeto está licenciado sob MIT License.
