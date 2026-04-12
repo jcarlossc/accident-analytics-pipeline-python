@@ -1,6 +1,6 @@
 import logging
 from typing import Dict, Any
-
+from pathlib import Path
 
 def setup_logger(logging_config: Dict[str, Any], log_file: str) -> None:
     """
@@ -36,6 +36,12 @@ def setup_logger(logging_config: Dict[str, Any], log_file: str) -> None:
     Essa abordagem é comum em pipelines de dados e aplicações que
     precisam de monitoramento contínuo e rastreabilidade de execução.
     """
+
+    # Caminho do log
+    log_file = log_file
+
+    # 📁 Garante que a pasta existe
+    Path(log_file).parent.mkdir(parents=True, exist_ok=True)
 
     # Obtém o nível de logging definido na configuração.
     # O método getattr converte a string (ex: "INFO", "DEBUG")

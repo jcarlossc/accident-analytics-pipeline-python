@@ -73,7 +73,13 @@ def main() -> None:
         # ------------------------------------------------------------------
         # 5. Salvamento do dataset processado
         # ------------------------------------------------------------------
-        save_csv(df, config["paths"]["data"]["processed"])
+        output_path = Path(config["paths"]["data"]["processed"])
+
+        # Cria a pasta se não existir
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Salva o arquivo
+        save_csv(df, output_path)
 
         logger.info("### Término do pipeline de acidentes. ###")
 
